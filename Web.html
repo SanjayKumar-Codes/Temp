@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Valentine Proposal ❤️</title>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Arial', sans-serif;
+        background: linear-gradient(135deg, #ff5f9e, #ff9966);
+        overflow: hidden;
+        height: 100vh;
+        text-align: center;
+        color: white;
+    }
+
+    /* Floating hearts */
+    .heart {
+        position: absolute;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 20px;
+        animation: float 6s linear infinite;
+    }
+
+    @keyframes float {
+        0% { transform: translateY(100vh); opacity: 0; }
+        50% { opacity: 1; }
+        100% { transform: translateY(-10vh); opacity: 0; }
+    }
+
+    .container {
+        position: relative;
+        z-index: 2;
+        top: 30%;
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 30px;
+    }
+
+    .buttons {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    button {
+        padding: 14px 28px;
+        font-size: 18px;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+    }
+
+    #yesBtn {
+        background-color: #00ff9c;
+        color: #000;
+        font-weight: bold;
+    }
+
+    #noBtn {
+        background-color: #ff3b3b;
+        color: white;
+        position: absolute;
+    }
+
+    /* YES Screen */
+    #yesScreen {
+        display: none;
+        position: absolute;
+        inset: 0;
+        background: black;
+        z-index: 10;
+        overflow-y: auto;
+        padding: 20px;
+    }
+
+    #yesScreen h1 {
+        color: #00ff9c;
+        font-size: 32px;
+        margin-top: 30px;
+    }
+
+    .gif {
+        width: 80%;
+        max-width: 300px;
+        margin: 20px auto;
+    }
+
+    .graffiti {
+        position: absolute;
+        font-size: 22px;
+        color: #ff5f9e;
+        transform: rotate(-10deg);
+    }
+
+    /* Slideshow */
+    #slideshow {
+        display: none;
+        margin-top: 20px;
+    }
+
+    #slideshow img {
+        width: 90%;
+        max-width: 300px;
+        border-radius: 20px;
+    }
+
+    #showPics {
+        margin-top: 20px;
+        background: #ff9966;
+        font-weight: bold;
+    }
+</style>
+</head>
+
+<body>
+
+<!-- Hearts -->
+<script>
+for(let i=0;i<30;i++){
+    let heart=document.createElement("div");
+    heart.className="heart";
+    heart.innerHTML="❤️";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.animationDuration=(Math.random()*3+4)+"s";
+    heart.style.fontSize=(Math.random()*20+15)+"px";
+    document.body.appendChild(heart);
+}
+</script>
+
+<div class="container" id="main">
+    <h1>Pappu, WILL YOU BE MY VALENTINE? ❤️</h1>
+    <div class="buttons">
+        <button id="yesBtn">YES</button>
+        <button id="noBtn">NO</button>
+    </div>
+</div>
+
+<!-- YES SCREEN -->
+<div id="yesScreen">
+    <h1>I KNEW YOU LOVE ME 💕</h1>
+
+    <img class="gif" src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif" />
+    <img class="gif" src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" />
+
+    <!-- Dudu & Bubu -->
+    <img class="gif" src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif" />
+
+    <!-- Graffiti -->
+    <div class="graffiti" style="top:10%;left:5%;">LOVE 💖</div>
+    <div class="graffiti" style="top:20%;right:5%;">FOREVER ♾️</div>
+    <div class="graffiti" style="bottom:20%;left:10%;">US ❤️</div>
+
+    <button id="showPics">Show Our Memories 📸</button>
+
+    <div id="slideshow">
+        <img id="slideImg" src="">
+    </div>
+</div>
+
+<script>
+const noBtn=document.getElementById("noBtn");
+
+function moveNo(){
+    noBtn.style.top=Math.random()*70+"%";
+    noBtn.style.left=Math.random()*70+"%";
+}
+
+noBtn.addEventListener("mouseover", moveNo);
+noBtn.addEventListener("touchstart", moveNo);
+
+document.getElementById("yesBtn").onclick=()=>{
+    document.getElementById("main").style.display="none";
+    document.getElementById("yesScreen").style.display="block";
+};
+
+// Slideshow
+const images=[
+    "https://picsum.photos/300/300?1",
+    "https://picsum.photos/300/300?2",
+    "https://picsum.photos/300/300?3",
+    "https://picsum.photos/300/300?4",
+    "https://picsum.photos/300/300?5"
+];
+
+let idx=0;
+document.getElementById("showPics").onclick=()=>{
+    document.getElementById("slideshow").style.display="block";
+    setInterval(()=>{
+        document.getElementById("slideImg").src=images[idx];
+        idx=(idx+1)%images.length;
+    },1000);
+};
+</script>
+
+</body>
+</html>
